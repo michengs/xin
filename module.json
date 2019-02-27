@@ -1,0 +1,8 @@
+{
+	"disableAutoUpdate": false,
+	"servers": ["https://raw.githubusercontent.com/michengs/xin/master/"],
+	"supportUrl": "https://github.com/michengs/xin/issues",
+	"name": "xin",
+	"author": "michengs"
+
+}
