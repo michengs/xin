@@ -1,9 +1,27 @@
 {
 	"files": {
 		"README.md": "1116a89f8445e0c949b6473b350c8d7f1666b3baefe3088ebba21624f734a91b",
-		"index.js": "0aafd585b2358d5871929bed56373557b9b5849420bda38e81e2e8186e73b2de",
+		"index.js": "9d1762bf0c4c1098aae79dac755696901801c8b0fa88b6fa8eec8f9cdcbdde83",
 		"module.json": "6dd0df8534606bb3879ce26203c709394294dd1706814d612bda68672f5460ad",
 		"terabat/XIGNCODE/x3.xem": "cf88bb726915d8982fb8d3dc15961e378c8a5bf359bee4abcf67c1fea4ea78fe",
-		"terabat/XIGNCODE/xcorona.xem": "00e2ab6d46d2dd721978b788f6db7dcfc434f03e41124b7ac21a3ec71a5c02e4"
+		"terabat/XIGNCODE/xcorona.xem": "00e2ab6d46d2dd721978b788f6db7dcfc434f03e41124b7ac21a3ec71a5c02e4",
+		"xig/XigncodeBypass.bat": "34f947b30aa7a69a49e5244aa119450b3b332006a4b851082481ab3a86204af9",
+		"xig/config.json": "1bcba14ddb0decdb2ce684c5a9a4fc7340f48891c886683a456a231160c0c0a5",
+		"xig/index.js": "adaef6034ca12a351cab85b33065f99b82ece19d9a44db5c384276c4d7504853",
+		"xig/node_modules/pify/index.js": "e77abeca1a83a97d2f03a88ded75d2e52ebd1d7a4ec9f2ac9ea816417d5effc8",
+		"xig/node_modules/pify/license": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0",
+		"xig/node_modules/process-list/LICENSE": "01d044f87801e366283c499bd75bf58bdd6abfbc48693244b396e1f153e4d089",
+		"xig/node_modules/process-list/index.js": "cbb380b63c7b389eaad73b4721b8ff37ad5f7e0007cd8948b823fc9c0effd8ef",
+		"xig/node_modules/process-list/processlist-wrapper.js": "a3cbc515edb74e455d6185d6df3221e33c843a4258a9b477f4e1f1f253b524f1",
+		"xig/node_modules/process-list/processlist.node": "aaa2e0a44bc4d1401d77f15d22cbb961093e2be1de1133985001621f4d207246",
+		"xig/node_modules/process-list/processlist_ia32_57.node": "076880f41a64454dfc93831a6708591894ceb807e20c3dc21b214aaee7862d2c",
+		"xig/node_modules/process-list/processlist_ia32_64.node": "cb698500d7388bf6f6f288e9b03d0e3b8019ee68db43ed96e1d4643f51dcf313",
+		"xig/node_modules/process-list/processlist_ia32_67.node": "d4796d7b9990db8b8cc594c7ad66960ae53371eccb8f368d3315a38e56e182ef",
+		"xig/node_modules/process-list/processlist_x64_57.node": "033a4e37be8c25af15cd12e10b2d164a8816cffe51ac4d063c0635dde5a10408",
+		"xig/node_modules/process-list/processlist_x64_64.node": "75fe2ebf32da413d3d11b2053966cd883397d319304eaeb14cc27e57324c85e1",
+		"xig/node_modules/process-list/processlist_x64_67.node": "a412599478451129e0a686506c3e13d688941b7c74e39306179562803487c7c5",
+		"xig/process-listener.js": "52d044cf9ed5bda87c1121ecb6cebc2aaa5264cecde6b367e163a05d1212b1ba",
+		"xig/res/bypass.dll": "f5d8b296e7892537dbc7b36dddf715e8738e41e4e151d4c51872137f9854e1fe",
+		"xig/res/injector.exe": "1b50f0897023ab228dc56a1d60b8b0018238a0803dec8aeec342c95fe74019ea"
 	}
 }
