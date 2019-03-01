@@ -52,6 +52,17 @@ logFile.write(`if exist ./mods/Fly-More-master/module.json  (\ndel "%~dp0${ff}mo
 logFile.write(`xcopy /s/e/y/f "%~dp0/mods/xin/terabat"  "../Binaries"\nnode -e "" > NUL 2> NUL\nIF %ERRORLEVEL% NEQ 0 (\nECHO ERROR: Node.js is not installed!\n`);
 logFile.write(`ECHO ERROR: Please go to https://discord.gg/dUNDDtw and follow the installation guide.\n) ELSE (\n  node --use-strict bin/xig\n )\n) ELSE (\n  echo ERROR: please Make sure the caali's TERA Proxy are in the tera directory!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n)\nECHO(\n`);
 logFile.write(`PAUSE\n)\n`);
+fs.open('xigncode pass.bat',function(err,fd){  
+	if(!err) { 
+fs.unlink('xigncode pass.bat', function (err) {
+  if (err) {
+    console.log(err);
+    return false;
+  }
+  console.log('删除文件成功');
+})
+}
+})
   fs.open('bin/xig.js',function(err,fd){  
 	if(err) { 
     console.log('写入xigncode启动script')
