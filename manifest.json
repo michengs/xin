@@ -1,13 +1,9 @@
 {
-    "files": {
-        "README.md": "1116a89f8445e0c949b6473b350c8d7f1666b3baefe3088ebba21624f734a91b",
-        "index.js": "8ce760b7cc314a6fb0d91439b67b7fef91da5ef9f1dbff9f3314734a36b176f3",
-        "module.json": "668a249a1d8b279d94ba8a331553bc63b484b3c714e463631dc181304dd94675",
-        "xig/index.js": "adaef6034ca12a351cab85b33065f99b82ece19d9a44db5c384276c4d7504853",
-        "xig/process-listener.js": "52d044cf9ed5bda87c1121ecb6cebc2aaa5264cecde6b367e163a05d1212b1ba",
-        "xig/res/bypass.dll": "f5d8b296e7892537dbc7b36dddf715e8738e41e4e151d4c51872137f9854e1fe",
-        "xig/res/injector.exe": "1b50f0897023ab228dc56a1d60b8b0018238a0803dec8aeec342c95fe74019ea",
-        "xig/terabat/XIGNCODE/x3.xem": "cf88bb726915d8982fb8d3dc15961e378c8a5bf359bee4abcf67c1fea4ea78fe",
-        "xig/terabat/XIGNCODE/xcorona.xem": "00e2ab6d46d2dd721978b788f6db7dcfc434f03e41124b7ac21a3ec71a5c02e4"
-    }
+	"files": {
+		"README.md": "1116a89f8445e0c949b6473b350c8d7f1666b3baefe3088ebba21624f734a91b",
+		"index.js": "8ce760b7cc314a6fb0d91439b67b7fef91da5ef9f1dbff9f3314734a36b176f3",
+		"module.json": "6dd0df8534606bb3879ce26203c709394294dd1706814d612bda68672f5460ad",
+		"xig/terabat/XIGNCODE/x3.xem": "cf88bb726915d8982fb8d3dc15961e378c8a5bf359bee4abcf67c1fea4ea78fe",
+		"xig/terabat/XIGNCODE/xcorona.xem": "00e2ab6d46d2dd721978b788f6db7dcfc434f03e41124b7ac21a3ec71a5c02e4"
+	}
 }
