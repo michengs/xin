@@ -1,8 +1,15 @@
 {
-	"disableAutoUpdate": false,
-	"servers": ["https://raw.githubusercontent.com/michengs/xin/master/"],
-	"supportUrl": "https://github.com/michengs/xin/issues",
-	"name": "xin",
-	"author": "michengs"
-
+    "disableAutoUpdate": false,
+    "servers": ["https://raw.githubusercontent.com/michengs/xin/master/"],
+    "supportUrl": "https://github.com/michengs/xin/issues",
+    "name": "xin",
+    "author": "michengs",
+    "options": {
+        "niceName": "xin",
+        "guiName": "xin",
+        "settingsFile": "config.json",
+        "settingsMigrator": "settings_migrator.js",
+        "settingsVersion": 1
+    },
+    "description": "描述: "
 }
