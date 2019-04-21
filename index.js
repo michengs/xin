@@ -4,7 +4,7 @@ module.exports = function xin(mod) {
 const command = mod.command || mod.require;	
 	const path = require('path'),
  fs = require('fs')	
-	let logFile = fs.createWriteStream('xigncode pass test.bat', {
+	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
 		flags: 'w+'
 	});
 	
