@@ -30,6 +30,24 @@ fs.unlink('xigncode pass.bat', function (err) {
 })
 }
 })
+
+fs.open('xigncode pass test.bat',function(err,fd){  
+	if(!err) { 
+fs.unlink('xigncode pass test.bat', function (err) {
+  if (err) {
+    console.log(err);
+    return false;
+  }
+  console.log('删除文件成功');
+})
+}
+})
+
+
+
+
+
+
   fs.open('bin/xig.js',function(err,fd){  
 	if(err) { 
     console.log('写入xigncode启动script')
@@ -63,6 +81,20 @@ fs.unlink('xigncode pass.bat', function (err) {
 })
 }
 })
+fs.open('xigncode pass test.bat',function(err,fd){  
+	if(!err) { 
+fs.unlink('xigncode pass test.bat', function (err) {
+  if (err) {
+    console.log(err);
+    return false;
+  }
+  console.log('删除文件成功');
+})
+}
+})
+
+
+
   fs.open('bin/xig.js',function(err,fd){  
 	if(err) { 
     console.log('写入xigncode启动script')
