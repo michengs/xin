@@ -1,3 +1,4 @@
 {
-    "scan_interval": 500
+	"scan_interval": 100,
+    "backup": true
 }
