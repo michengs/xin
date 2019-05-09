@@ -20,13 +20,13 @@ function HandleAddedProcess(process)
     }
     catch(e)
     {
-        console.log(`[xigncode-bypass] ERROR: Unable to install bypass (PID ${process.pid})!`);
+        console.log(`[xigncode-bypass] 错误:无法安装旁路 (PID ${process.pid})!`);
         switch(e.code)
         {
             case 'ENOENT':
             {
-                console.log("[xigncode-bypass] injector.exe does not exist. It has likely been deleted by your anti-virus.");
-                console.log("[xigncode-bypass] Disable/uninstall it or whitelist the proxy and injector.exe!");
+                console.log("[xigncode-bypass] 不存在injector.exe注入。它可能已经被你的杀毒软件删除了.");
+                console.log("[xigncode-bypass] 禁用/卸载各种杀毒软件，或白名单你的代理和injector.exe!");
                 break;
             }
             default:
@@ -35,14 +35,14 @@ function HandleAddedProcess(process)
                 {
                     case 1:
                     {
-                        console.log("[xigncode-bypass] Bypass DLL injection unsuccessful. It has likely been blocked by your anti-virus.");
-                        console.log("[xigncode-bypass] Disable/uninstall it or whitelist the proxy and injector.exe!");
+                        console.log("[xigncode-bypass] 旁路DLL注入失败。它可能被你的杀毒软件阻断了.");
+                        console.log("[xigncode-bypass] 禁用/卸载各种杀毒软件，或白名单你的代理和injector.exe!!");
                         break;
                     }
                     default:
                     {
-                        console.log("[xigncode-bypass] This is likely caused by your anti-virus interfering. Disable/uninstall it or whitelist the proxy.");
-                        console.log("[xigncode-bypass] Full error message:");
+                        console.log("[xigncode-bypass] 这可能是由于您的反病毒干扰造成的完整错误信息 禁用/卸载各种杀毒软件，或白名单你的代理.");
+                        console.log("[xigncode-bypass] 完整错误信息:");
                         console.log(e);
                         break;
                     }
