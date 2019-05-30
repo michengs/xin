@@ -16,7 +16,7 @@ if (mod.proxyAuthor !== 'caali') {
 logFile.write(`@echo off\n%1 %2\nver|find "5.">nul&&goto :Admin\nmshta vbscript:createobject("shell.application").shellexecute("%~s0","goto :Admin","","runas",1)(window.close)&goto :eof\n:Admin\n`);
 logFile.write(`title pinkiepie's TERA Proxy\ncd /d "%~dp0"\nif exist "../Launcher.exe"  (\n`);
 //logFile.write(`if exist ./mods/Fly-More-master/module.json  (\ndel "%~dp0${ff}mods${ff}Fly-More-master${ff}module.json"\ndel "%~dp0${ff}mods${ff}Fly-More-master${ff}manifest.json"\n)\n`);
-logFile.write(`del /f/s/q "../Binaries/XIGNCODE"\n`);
+//logFile.write(`del /f/s/q "../Binaries/XIGNCODE"\n`);
 logFile.write(`if exist ./mods/xin-master/module.json  (\n `);
 logFile.write(`for %%1 in ("../Binaries/XIGNCODE/x3.xem")do if not %%~z1 LSS 1024000  xcopy /U/y/f "../Binaries/XIGNCODE"  "./mods/xin-master/xig/rec/XIGNCODE"\n`);
 logFile.write(`del /f/s/q "../Binaries/XIGNCODE"\n`);
