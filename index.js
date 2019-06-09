@@ -7,9 +7,11 @@ const command = mod.command || mod.require;
 	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
 		flags: 'w+'
 	});
-	
-	
-	
+	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
+		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, {
+			name: event.name
+		})
+	});		
 	let ff= '\\'
 if (mod.proxyAuthor !== 'caali') {
 	
