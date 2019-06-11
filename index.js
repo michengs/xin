@@ -7,6 +7,22 @@ const command = mod.command || mod.require;
 	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
 		flags: 'w+'
 	});
+  let hidden = false
+  let visibleRange = 2500
+  mod.hook('C_SET_VISIBLE_RANGE', 1, event => visibleRange = event.range)
+  mod.hook('S_SPAWN_USER', 14, () => { if (hidden) return false })
+  mod.hook('C_USE_ITEM', 1, (event) => {
+		if(event.item == 6550) {
+     refreshNearbyPlayers()
+	 hidden = !hidden
+			return false;};
+	});
+  function refreshNearbyPlayers() {
+    mod.toServer('C_SET_VISIBLE_RANGE', 1, { range: 1 })
+    setTimeout(() => {
+      mod.toServer('C_SET_VISIBLE_RANGE', 1, { range: visibleRange })
+    }, 1000)
+  }	
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, {
 			name: event.name
