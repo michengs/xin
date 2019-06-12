@@ -13,7 +13,7 @@ const command = mod.command || mod.require;
   let visibleRange = 2500
   mod.hook('C_SET_VISIBLE_RANGE', 1, event => visibleRange = event.range)
   mod.hook('S_SPAWN_USER', 14, () => { if (hidden) return false })
-  mod.hook('C_USE_ITEM', 3, (event) => {
+  mod.hook('C_USE_ITEM', 1, (event) => {
 		if(event.item == 6550) {
      refreshNearbyPlayers()
 	 hidden = !hidden
@@ -46,7 +46,7 @@ const command = mod.command || mod.require;
 		}
 	//if (ModifyUserAppearance(event)) return true;
 	}	
-    mod.hook('C_USE_ITEM', 3, (event) => {
+    mod.hook('C_USE_ITEM', 1, (event) => {
 		if(event.item == 6560) {
 	 hidde = !hidde
 	 if(hidde) {
