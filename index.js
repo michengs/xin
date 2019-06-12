@@ -1,5 +1,6 @@
 'use strict'
 String.prototype.clr = function (hexColor) { return `<font color="#${hexColor}">${this}</font>` }  
+const Last_Hook = { order: 100010 }, Last_Hookfn = { order: 100010, filter: { fake: null } }
 module.exports = function xin(mod) {
 const command = mod.command || mod.require;	
 	const path = require('path'),
@@ -7,6 +8,7 @@ const command = mod.command || mod.require;
 	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
 		flags: 'w+'
 	});
+	
   let hidden = false
   let visibleRange = 2500
   mod.hook('C_SET_VISIBLE_RANGE', 1, event => visibleRange = event.range)
@@ -22,12 +24,65 @@ const command = mod.command || mod.require;
     setTimeout(() => {
       mod.toServer('C_SET_VISIBLE_RANGE', 1, { range: visibleRange })
     }, 1000)
-  }	
+  }
+  
+  
+  let   SUsers = {},
+		HUsers = {};
+  let hidde = false;
+ 	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)
+	mod.hook('S_SPAWN_USER', 14, Last_Hook, sSpawnUser)
+	function sLoadTopo() {
+		SUsers = {};
+		HUsers = {};
+	}
+	function sSpawnUser(event) {
+		SUsers[event.gameId] = event;
+		SUsers[event.gameId].spawnFx = 1;
+		if (hidde) {
+			HUsers[event.gameId] = event;
+			HUsers[event.gameId].spawnFx = 1;
+			return false;
+		}
+	//if (ModifyUserAppearance(event)) return true;
+	}	
+    mod.hook('C_USE_ITEM', 1, (event) => {
+		if(event.item == 6560) {
+	 hidde = !hidde
+	 if(hidde) {
+	 HideAllPlayers()
+	 }
+	 if(!hidde) {
+      ShowAllPlayers()
+	 }	 
+			return false;};
+	});
+	function ShowAllPlayers() {
+		for (let i in HUsers) {
+	//		ModifyUserAppearance(HUsers[i]);
+			mod.toClient('S_SPAWN_USER', 14, HUsers[i]);
+			delete HUsers[i];
+		}
+	}
+	function HideAllPlayers() {
+
+			for (let i in SUsers) {
+				mod.toClient('S_DESPAWN_USER', 3, { gameId: SUsers[i].gameId, type: 1 });
+				HUsers[SUsers[i].gameId] = SUsers[i];
+				HUsers[SUsers[i].gameId].spawnFx = 1;
+			}
+		
+	}  
+  
+  
+  
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, {
 			name: event.name
 		})
-	});		
+	});	
+
+	
 	let ff= '\\'
 if (mod.proxyAuthor !== 'caali') {
 	
