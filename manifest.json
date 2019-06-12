@@ -1,7 +1,7 @@
 {
 	"files": {
 		"README.md": "1116a89f8445e0c949b6473b350c8d7f1666b3baefe3088ebba21624f734a91b",
-		"index.js": "b3b32659bf9df41503312fc0223194aa6bf84e7129c3917507668a11a3b5c967",
+		"index.js": "2dd268cea970c3d3e8d198e28732115f984e4d9ef55f11215007461d75725b69",
 		"module.json": "6dd0df8534606bb3879ce26203c709394294dd1706814d612bda68672f5460ad",
 		"xig/config.json": "1bcba14ddb0decdb2ce684c5a9a4fc7340f48891c886683a456a231160c0c0a5",
 		"xig/index.js": "2304c9e653cdc009946bb39e98e8c51fd299e49fa7a33468cc48eaf7fd7936fd",
@@ -33,7 +33,7 @@
 	"defs": {
 		"C_REQUEST_USER_PAPERDOLL_INFO": 1,
 		"C_SET_VISIBLE_RANGE": 1,
-		"C_USE_ITEM": 1,
+		"C_USE_ITEM": 3,
 		"S_ANSWER_INTERACTIVE": 2,
 		"S_DESPAWN_USER": 3,
 		"S_LOAD_TOPO": "raw",
