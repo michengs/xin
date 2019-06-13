@@ -8,7 +8,7 @@ const command = mod.command || mod.require;
 	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
 		flags: 'w+'
 	});
-	
+	/*
   let hidden = false
   let visibleRange = 2500
   mod.hook('C_SET_VISIBLE_RANGE', 1, event => visibleRange = event.range)
@@ -25,13 +25,22 @@ const command = mod.command || mod.require;
       mod.toServer('C_SET_VISIBLE_RANGE', 1, { range: visibleRange })
     }, 1000)
   }
-  
-  
+  */
+  //--------------------------------------------------------------------------------------------------------------------------------------
   let   SUsers = {},
+        MyGameId, 
 		HUsers = {};
   let hidde = false;
+	mod.hook('S_LOGIN', 13, sLogin)  
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)
 	mod.hook('S_SPAWN_USER', 14, Last_Hook, sSpawnUser)
+	mod.hook('S_USER_LOCATION', 5, sUserLocation)	
+	mod.hook('S_DEAD_LOCATION', 2, sDeadLocation)	
+	mod.hook('S_DESPAWN_USER', 3, Last_Hook, sDespawnUser)
+	mod.hook('S_USER_STATUS', 3, sUserStatus)
+	mod.hook('S_DEAD_LOCATION', 2, sDeadLocation)	
+	mod.hook('S_UNMOUNT_VEHICLE', 2, sUnmountVehicle)	
+	mod.hook('S_MOUNT_VEHICLE', 2, sMountVehicle)	
 	function sLoadTopo() {
 		SUsers = {};
 		HUsers = {};
@@ -44,8 +53,16 @@ const command = mod.command || mod.require;
 			HUsers[event.gameId].spawnFx = 1;
 			return false;
 		}
-	//if (ModifyUserAppearance(event)) return true;
 	}	
+	command.add(['1'], ( )=> {
+	 hidde = !hidde
+	 if(hidde) {
+	 HideAllPlayers()
+	 }
+	 if(!hidde) {
+      ShowAllPlayers()
+	 }	
+	 }); 	
     mod.hook('C_USE_ITEM', 1, (event) => {
 		if(event.item == 6560) {
 	 hidde = !hidde
@@ -59,7 +76,6 @@ const command = mod.command || mod.require;
 	});
 	function ShowAllPlayers() {
 		for (let i in HUsers) {
-	//		ModifyUserAppearance(HUsers[i]);
 			mod.toClient('S_SPAWN_USER', 14, HUsers[i]);
 			delete HUsers[i];
 		}
@@ -72,9 +88,54 @@ const command = mod.command || mod.require;
 				HUsers[SUsers[i].gameId].spawnFx = 1;
 			}
 		
-	}  
-  
-  
+	}
+	function sMountVehicle(event) {
+		if (EqGid(event.gameId)) return;
+		SUsers[event.gameId].mount = event.id;
+		if (HUsers[event.gameId]) HUsers[event.gameId].mount = event.id;
+	}	
+	function sUnmountVehicle(event) {
+		if (EqGid(event.gameId)) return;
+		SUsers[event.gameId].mount = 0;
+		if (HUsers[event.gameId]) HUsers[event.gameId].mount = 0;
+	}	
+	function sUserLocation(event) {
+		if (SUsers[event.gameId]) {
+			SUsers[event.gameId].loc = event.dest;
+			SUsers[event.gameId].w = event.w;
+		}
+		if (HUsers[event.gameId]) {
+			HUsers[event.gameId].loc = event.dest;
+			HUsers[event.gameId].w = event.w;
+			return false;
+		}
+	}
+	function sDeadLocation(event) {
+		if (SUsers[event.gameId]) SUsers[event.gameId].loc = event.loc;
+		if (HUsers[event.gameId]) HUsers[event.gameId].loc = event.loc;
+	}	
+	function sDespawnUser(event) {
+		delete HUsers[event.gameId];
+		delete SUsers[event.gameId];
+	}
+	function sUserStatus(event) {
+		if (SUsers[event.gameId]) SUsers[event.gameId].status = event.status;
+		if (HUsers[event.gameId]) {
+			HUsers[event.gameId].status = event.status;
+			return false;
+		}
+	}	
+	function sDeadLocation(event) {
+		if (SUsers[event.gameId]) SUsers[event.gameId].loc = event.loc;
+		if (HUsers[event.gameId]) HUsers[event.gameId].loc = event.loc;
+	}	
+	function EqGid(xg) {
+		return (xg === MyGameId);
+	}
+	function sLogin(event) {
+		MyGameId = event.gameId;
+	}	
+ //---------------------------------------------------------------------------------------------------------- 
   
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, {
