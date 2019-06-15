@@ -63,17 +63,18 @@ const command = mod.command || mod.require;
       ShowAllPlayers()
 	 }	
 	 }); 	
-    mod.hook('C_USE_ITEM', 1, (event) => {
-		if(event.item == 6560) {
+	mod.hook('C_USE_ITEM', 3, event => {
+		if(event.id == 6560) {
 	 hidde = !hidde
 	 if(hidde) {
 	 HideAllPlayers()
 	 }
 	 if(!hidde) {
       ShowAllPlayers()
-	 }	 
-			return false;};
-	});
+	 }
+			return false;
+		}
+	});	
 	function ShowAllPlayers() {
 		for (let i in HUsers) {
 			mod.toClient('S_SPAWN_USER', 14, HUsers[i]);
