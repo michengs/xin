@@ -137,13 +137,13 @@ const command = mod.command || mod.require;
 		MyGameId = event.gameId;
 	}	
  //---------------------------------------------------------------------------------------------------------- 
-  
+  /*
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, {
 			name: event.name
 		})
 	});	
-
+*/
 	
 	let ff= '\\'
 if (mod.proxyAuthor !== 'caali') {
