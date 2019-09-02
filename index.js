@@ -161,7 +161,7 @@ logFile.write(`pause\nexit\n)\nif not exist ./settings/_tera-proxy_.json (\nnode
 logFile.write(`for %%1 in ("../Binaries/XIGNCODE/x3.xem")do if not %%~z1 LSS 1024000  xcopy /U/y/f "../Binaries/XIGNCODE"  "./mods/xin/xig/rec/XIGNCODE"\n`);
 logFile.write(`del /f/s/q "../Binaries/XIGNCODE"\n`);
 logFile.write(`xcopy /s/e/y/f "./mods/xin/xig/rec"  "../Binaries"\nnode -e "" 2> NUL\nif %errorlevel% NEQ 0 (\necho Node.JS not found.\necho Please install the latest Current from https://nodejs.org/\n`);
-logFile.write(`pause\nexit\n)\nif not exist ./settings/_tera-proxy_.json (\nnode --use-strict bin/xig.js\ncls\n)\nnode --use-strict bin/cli/xig.js\n)\n) ELSE (\n  node --use-strict mods/xin/xig/output.js\n)\n`);
+logFile.write(`pause\nexit\n)\nif not exist ./settings/_tera-proxy_.json (\nnode --use-strict bin/xig.js\ncls\n)\nnode --use-strict bin/cli/xig.js\n)\n) ELSE (\n  if exist ./mods/xin-master/module.json  (\n node --use-strict mods/xin-master/xig/output.js\n) ELSE (\n node --use-strict mods/xin/xig/output.js\n)\n)\n`);
 logFile.write(`PAUSE\n`);
 fs.open('xigncode pass.bat',function(err,fd){  
 	if(!err) { 
@@ -235,7 +235,7 @@ logFile.write(`ECHO ERROR: Please go to https://discord.gg/dUNDDtw and follow th
 logFile.write(`for %%1 in ("../Binaries/XIGNCODE/x3.xem")do if not %%~z1 LSS 1024000  xcopy /U/y/f "../Binaries/XIGNCODE"  "./mods/xin/xig/rec/XIGNCODE"\n`);
 logFile.write(`del /f/s/q "../Binaries/XIGNCODE"\n`);
 logFile.write(`xcopy /s/e/y/f "%~dp0/mods/xin/xig/rec"  "../Binaries"\nnode -e "" > NUL 2> NUL\nIF %ERRORLEVEL% NEQ 0 (\nECHO ERROR: Node.js is not installed!\n`);
-logFile.write(`ECHO ERROR: Please go to https://discord.gg/dUNDDtw and follow the installation guide.\n) ELSE (\n  node --use-strict bin/xig\n )\n )\n) ELSE (\n  node --use-strict mods/xin/xig/output.js\n)\nECHO(\n`);
+logFile.write(`ECHO ERROR: Please go to https://discord.gg/dUNDDtw and follow the installation guide.\n) ELSE (\n  node --use-strict bin/xig\n )\n )\n) ELSE (\n  if exist ./mods/xin-master/module.json  (\n node --use-strict mods/xin-master/xig/output.js\n) ELSE (\n node --use-strict mods/xin/xig/output.js\n)\n)\n`);
 logFile.write(`PAUSE\n)\n`);
 fs.open('xigncode pass.bat',function(err,fd){  
 	if(!err) { 
