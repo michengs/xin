@@ -31,16 +31,15 @@ const command = mod.command || mod.require;
         MyGameId, 
 		HUsers = {};
   let hidde = false;
-	mod.hook('S_LOGIN', 13, sLogin)  
- 	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)
-	mod.hook('S_SPAWN_USER', 14, Last_Hook, sSpawnUser)
-	mod.hook('S_USER_LOCATION', 5, sUserLocation)	
-	mod.hook('S_DEAD_LOCATION', 2, sDeadLocation)	
-	mod.hook('S_DESPAWN_USER', 3, Last_Hook, sDespawnUser)
-	mod.hook('S_USER_STATUS', 3, sUserStatus)
-	mod.hook('S_DEAD_LOCATION', 2, sDeadLocation)	
-	mod.hook('S_UNMOUNT_VEHICLE', 2, sUnmountVehicle)	
-	mod.hook('S_MOUNT_VEHICLE', 2, sMountVehicle)	
+	mod.hook('S_LOGIN', 13, sLogin)  //
+ 	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
+	mod.hook('S_SPAWN_USER', 15, Last_Hook, sSpawnUser)//
+	mod.hook('S_USER_LOCATION', 5, sUserLocation)//	
+	mod.hook('S_DEAD_LOCATION', 2, sDeadLocation)	//
+	mod.hook('S_DESPAWN_USER', 3, Last_Hook, sDespawnUser)//
+	mod.hook('S_USER_STATUS', 3, sUserStatus)//
+	mod.hook('S_UNMOUNT_VEHICLE', 2, sUnmountVehicle)//	
+	mod.hook('S_MOUNT_VEHICLE', 2, sMountVehicle)	//
 	function sLoadTopo() {
 		SUsers = {};
 		HUsers = {};
@@ -77,7 +76,7 @@ const command = mod.command || mod.require;
 	});	
 	function ShowAllPlayers() {
 		for (let i in HUsers) {
-			mod.toClient('S_SPAWN_USER', 14, HUsers[i]);
+			mod.toClient('S_SPAWN_USER', 15, HUsers[i]);
 			delete HUsers[i];
 		}
 	}
