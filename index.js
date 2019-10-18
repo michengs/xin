@@ -31,7 +31,7 @@ const command = mod.command || mod.require;
         MyGameId, 
 		HUsers = {};
   let hidde = false;
-	mod.hook('S_LOGIN', 13, sLogin)  //
+	mod.hook('S_LOGIN', 14, sLogin)  //
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
 	mod.hook('S_SPAWN_USER', 15, Last_Hook, sSpawnUser)//
 	mod.hook('S_USER_LOCATION', 5, sUserLocation)//	
