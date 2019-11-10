@@ -2,7 +2,7 @@
 String.prototype.clr = function (hexColor) { return `<font color="#${hexColor}">${this}</font>` }  
 const Last_Hook = { order: 100010 }, Last_Hookfn = { order: 100010, filter: { fake: null } }
 module.exports = function xin(mod) {
-const command = mod.command || mod.require;	
+const { command } = mod.require
 	const path = require('path'),
  fs = require('fs')	
 	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
@@ -142,7 +142,7 @@ const command = mod.command || mod.require;
 			name: event.name
 		})
 	});	
-
+command.add('b', () => { mod.send('S_NPC_MENU_SELECT', 1, { type: 28 }) })
 
 	let ff= '\\'
 if (mod.proxyAuthor !== 'caali') {
