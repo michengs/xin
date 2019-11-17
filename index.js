@@ -37,9 +37,11 @@ const { command } = mod.require
   */
   //--------------------------------------------------------------------------------------------------------------------------------------
   let   SUsers = {},
-        MyGameId, 
+        MyGameId,
+		MyGamemeId,
 		HUsers = {};
   let hidde = false;
+	mod.hook('S_LOGIN', 14, sLogin)  //  
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
 	mod.hook('S_SPAWN_USER', 15, Last_Hook, sSpawnUser)//
 	mod.hook('S_USER_LOCATION', 5, sUserLocation)//	
@@ -49,7 +51,7 @@ const { command } = mod.require
 	mod.hook('S_UNMOUNT_VEHICLE', 2, sUnmountVehicle)//	
 	mod.hook('S_MOUNT_VEHICLE', 2, sMountVehicle)	//
 	mod.hook('S_LOGIN', 14, (event) => {
-		MyGameId = event.name
+		MyGamemeId = event.name
 		
 	})	
   mod.hook('S_CHAT', 3, event => {
@@ -57,7 +59,7 @@ const { command } = mod.require
     if (event.channel == 1) {  
        logFile1.write(`${getTime(Date.now())} "组队 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);			
 			if(voice){			
-			if (event.name === MyGameId) {
+			if (event.name === MyGamemeId) {
 		     gameme = "";
 			} else {
 		     gameme = event.name + '说';		  
@@ -184,7 +186,9 @@ const { command } = mod.require
 	}
 
  //---------------------------------------------------------------------------------------------------------- 
-
+	function sLogin(event) {
+		MyGameId = event.gameId;
+	}
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 2, {
 			name: event.name
