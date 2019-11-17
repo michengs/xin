@@ -1,13 +1,22 @@
 'use strict'
-String.prototype.clr = function (hexColor) { return `<font color="#${hexColor}">${this}</font>` }  
-const Last_Hook = { order: 100010 }, Last_Hookfn = { order: 100010, filter: { fake: null } }
+String.prototype.clr = function (hexColor) { return `<font color="#${hexColor}">${this}</font>` } ;
+String.prototype.stripHTML = function () { return this.replace(/<[^>]+>/g, '') };
+const Last_Hook = { order: 100010 }, Last_Hookfn = { order: 100010, filter: { fake: null } };
+const fs = require('fs');
+const path = require('path');
+	let    logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {flags: 'w+'});
+    let    logFile0 = fs.createWriteStream('密语记录.txt', { flags: 'a' });
+    let    logFile1 = fs.createWriteStream('聊天记录.txt', { flags: 'a' });
+    let    logFile2 = fs.createWriteStream('公会记录.txt', { flags: 'a' });
+    let    logFile4 = fs.createWriteStream('交易记录.txt', { flags: 'a' });		
+    let    logFile27 = fs.createWriteStream('世界记录.txt', { flags: 'a' });	
+    let gameme;
+	let voice = null;
+try { voice = require('voice') }
+catch(e) { voice = null; }
 module.exports = function xin(mod) {
 const { command } = mod.require
-	const path = require('path'),
- fs = require('fs')	
-	let logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {
-		flags: 'w+'
-	});
+
 	/*
   let hidden = false
   let visibleRange = 2500
@@ -31,7 +40,6 @@ const { command } = mod.require
         MyGameId, 
 		HUsers = {};
   let hidde = false;
-	mod.hook('S_LOGIN', 14, sLogin)  //
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
 	mod.hook('S_SPAWN_USER', 15, Last_Hook, sSpawnUser)//
 	mod.hook('S_USER_LOCATION', 5, sUserLocation)//	
@@ -40,6 +48,51 @@ const { command } = mod.require
 	mod.hook('S_USER_STATUS', 3, sUserStatus)//
 	mod.hook('S_UNMOUNT_VEHICLE', 2, sUnmountVehicle)//	
 	mod.hook('S_MOUNT_VEHICLE', 2, sMountVehicle)	//
+	mod.hook('S_LOGIN', 14, (event) => {
+		MyGameId = event.name
+		
+	})	
+  mod.hook('S_CHAT', 3, event => {
+	    if (event.channel) { 		
+ 		console.log(event.channel + ':  ' + event.message.stripHTML())		
+	           }
+    if (event.channel < 11 || event.channel > 18) {	
+    if (event.channel == 1) {  
+       logFile1.write(`${getTime(Date.now())} "组队 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);			
+			if(voice){			
+			if (event.name === MyGameId) {
+		     gameme = "";
+			} else {
+		     gameme = event.name + '说';		  
+			}	
+           voice.speak(  gameme  + event.message.stripHTML(),1)			  
+			}
+           }   
+    if (event.channel == 2) {  
+       logFile2.write(`${getTime(Date.now())} "公会 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		 
+    }
+    if (event.channel == 4) {  
+       logFile4.write(`${getTime(Date.now())} "交易 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		
+    }
+    if (event.channel == 27) { 
+       logFile27.write(`${getTime(Date.now())} "世界 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		 
+    }
+    }
+  });
+	mod.hook('S_WHISPER', 3, (event) => { 
+     logFile0.write(`${getTime(Date.now())} "密语 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		
+	})
+	function getTime(thisTime) {
+		var Time = new Date(thisTime)
+		return	add_0(Time.getMonth()+1) + "/" + add_0(Time.getDate()) + " " +
+				add_0(Time.getHours())   + ":" + add_0(Time.getMinutes())
+	}	
+	function add_0(i) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		return i;
+	}	
 	function sLoadTopo() {
 		SUsers = {};
 		HUsers = {};
@@ -132,9 +185,7 @@ const { command } = mod.require
 	function EqGid(xg) {
 		return (xg === MyGameId);
 	}
-	function sLogin(event) {
-		MyGameId = event.gameId;
-	}	
+
  //---------------------------------------------------------------------------------------------------------- 
 
 	mod.hook('S_ANSWER_INTERACTIVE', 2, (event) => {
