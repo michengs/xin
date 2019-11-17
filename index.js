@@ -41,6 +41,14 @@ const { command } = mod.require
 		MyGamemeId,
 		HUsers = {};
   let hidde = false;
+    enableHook();
+ 	function enableHook() {
+		logFile0.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
+		logFile1.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
+		logFile2.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);	
+		logFile4.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
+		logFile27.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
+	}
 	mod.hook('S_LOGIN', 14, sLogin)  //  
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
 	mod.hook('S_SPAWN_USER', 15, Last_Hook, sSpawnUser)//
@@ -57,7 +65,7 @@ const { command } = mod.require
   mod.hook('S_CHAT', 3, event => {
     if (event.channel < 11 || event.channel > 18) {	
     if (event.channel == 1) {  
-       logFile1.write(`${getTime(Date.now())} "组队 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);			
+       logFile1.write(`${getTime(Date.now())}  组队 ：   ${event.name}      ：     ${event.message.stripHTML()}\n`);			
 			if(voice){			
 			if (event.name === MyGamemeId) {
 		     gameme = "";
@@ -68,18 +76,18 @@ const { command } = mod.require
 			}
            }   
     if (event.channel == 2) {  
-       logFile2.write(`${getTime(Date.now())} "公会 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		 
+       logFile2.write(`${getTime(Date.now())}  公会 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		 
     }
     if (event.channel == 4) {  
-       logFile4.write(`${getTime(Date.now())} "交易 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		
+       logFile4.write(`${getTime(Date.now())}  交易 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		
     }
     if (event.channel == 27) { 
-       logFile27.write(`${getTime(Date.now())} "世界 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		 
+       logFile27.write(`${getTime(Date.now())}  世界 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		 
     }
     }
   });
 	mod.hook('S_WHISPER', 3, (event) => { 
-     logFile0.write(`${getTime(Date.now())} "密语 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);		
+     logFile0.write(`${getTime(Date.now())}  密语 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		
 	})
 	function getTime(thisTime) {
 		var Time = new Date(thisTime)
@@ -335,5 +343,14 @@ File1.write(`require("../mods/xin/xig/index");\nrequire("./index-cli"); \n `);
 }
 })
 	}
+	this.destructor = function () {
+   {
+		logFile0.write(`<---- ${getTime(Date.now())} 结束记录 ---->\r\n`);
+		logFile1.write(`<---- ${getTime(Date.now())} 结束记录 ---->\r\n`);
+		logFile2.write(`<---- ${getTime(Date.now())} 结束记录 ---->\r\n`);	
+		logFile4.write(`<---- ${getTime(Date.now())} 结束记录 ---->\r\n`);
+		logFile27.write(`<---- ${getTime(Date.now())} 结束记录 ---->\r\n`);
+		}
+	}	
 }
  
