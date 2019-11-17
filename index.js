@@ -53,9 +53,6 @@ const { command } = mod.require
 		
 	})	
   mod.hook('S_CHAT', 3, event => {
-	    if (event.channel) { 		
- 		console.log(event.channel + ':  ' + event.message.stripHTML())		
-	           }
     if (event.channel < 11 || event.channel > 18) {	
     if (event.channel == 1) {  
        logFile1.write(`${getTime(Date.now())} "组队 ："   ${event.name}   "  ： "   ${event.message.stripHTML()}\n`);			
