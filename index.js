@@ -6,12 +6,14 @@ const fs = require('fs');
 const path = require('path');
 	let    logFile = fs.createWriteStream('tera-proxy-xigncode pass.bat', {flags: 'w+'});
     let    logFile0 = fs.createWriteStream('密语记录.txt', { flags: 'a' });
+    let    logFile00 = fs.createWriteStream('一般记录.txt', { flags: 'a' });	
     let    logFile1 = fs.createWriteStream('聊天记录.txt', { flags: 'a' });
     let    logFile2 = fs.createWriteStream('公会记录.txt', { flags: 'a' });
     let    logFile4 = fs.createWriteStream('交易记录.txt', { flags: 'a' });		
     let    logFile27 = fs.createWriteStream('世界记录.txt', { flags: 'a' });	
     let gameme;
 	let voice = null;
+	let speak_voice = false;
 try { voice = require('voice') }
 catch(e) { voice = null; }
 module.exports = function xin(mod) {
@@ -48,6 +50,7 @@ const { command } = mod.require
 		logFile2.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);	
 		logFile4.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
 		logFile27.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);
+		logFile00.write(`<---- ${getTime(Date.now())} 开始记录 ---->\r\n`);		
 	}
 	mod.hook('S_LOGIN', 14, sLogin)  //  
  	mod.hook('S_LOAD_TOPO', 'raw', sLoadTopo)//
@@ -66,7 +69,8 @@ const { command } = mod.require
     if (event.channel < 11 || event.channel > 18) {	
     if (event.channel == 1) {  
        logFile1.write(`${getTime(Date.now())}  组队 ：   ${event.name}      ：     ${event.message.stripHTML()}\n`);			
-			if(voice){			
+			if(voice){
+			if (!speak_voice)	return
 			if (event.name === MyGamemeId) {
 		     gameme = "";
 			} else {
@@ -84,6 +88,9 @@ const { command } = mod.require
     if (event.channel == 27) { 
        logFile27.write(`${getTime(Date.now())}  世界 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		 
     }
+    if (event.channel == 0) { 
+       logFile00.write(`${getTime(Date.now())}  一般 ：    ${event.name}      ：     ${event.message.stripHTML()}\n`);		 
+    }	
     }
   });
 	mod.hook('S_WHISPER', 3, (event) => { 
@@ -113,6 +120,13 @@ const { command } = mod.require
 			return false;
 		}
 	}	
+		
+	command.add(['语音'], ( )=> {
+	 speak_voice = !speak_voice
+     command.message(`语音播报已 ${speak_voice?"on":"off"}.`);	
+	 }); 	
+	
+
 	command.add(['1'], ( )=> {
 	 hidde = !hidde
 	 if(hidde) {
